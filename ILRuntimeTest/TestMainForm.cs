@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
 using ILRuntime.CLR.TypeSystem;
@@ -243,6 +244,14 @@ namespace ILRuntimeTest
         {
             btnRun.Enabled = _isLoadAssembly;
             btnRunSelect.Enabled = _selectItemArgs != null;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var msg = ILRuntime.Runtime.Enviorment.CrossBindingCodeGenerator.GenerateCrossBindingAdapterCode(typeof(TestClass2), "ILRuntimeTest");
+            MessageBox.Show(msg);
+            msg = ILRuntime.Runtime.Enviorment.CrossBindingCodeGenerator.GenerateCrossBindingAdapterCode(typeof(IAsyncStateMachine), "ILRuntimeTest");
+            MessageBox.Show(msg);
         }
 
         private void btnGenerateBinding_Click(object sender, EventArgs e)
