@@ -299,7 +299,9 @@ namespace TestCases
         public static void Test21()
         {
             bool res = false;
-            TestEnum5 b = (TestEnum5)Enum.ToObject(typeof(TestEnum5), 0x12345789);
+            object obj = Enum.ToObject(typeof(TestEnum5), 0x12345789);
+            Console.WriteLine(obj);
+            TestEnum5 b = (TestEnum5)obj;
             switch (b)
             {
                 case TestEnum5.Enum1:
@@ -317,6 +319,15 @@ namespace TestCases
             }
 
             if (!res)
+                throw new Exception();
+        }
+
+        public static void Test22()
+        {
+            int res = 0;
+            TestEnum5 b = TestEnum5.Enum2;
+            res = b.CompareTo(TestEnum5.Enum4);
+            if (res >= 0)
                 throw new Exception();
         }
         class SystemType
